@@ -2,7 +2,6 @@
 # native
 import requests
 from io import BytesIO
-import rarfile  # For RAR functionality
 import json
 
 # fastapi
@@ -52,20 +51,19 @@ app.add_middleware(
 class Track(BaseModel):
     trackId: str
 
-
 @app.post("/search/track")
 async def search_song(body: Track, req: Request):
     print('uwu')
     try:
         token = req.state.access_token
-        id = body.trackId
+        id= body.trackId
         track = search_track(token=token, track_id=id)
         searchedSong = Search(
             f'cancion {track["title"]} - {track["artist"]}')
         options = list(map(lambda track: track.video_id,
                            searchedSong.results))[0:5]
         json_str = json.dumps(options, indent=4, default=str)
-        options = {
+        options  = {
             "id": id,
             "title": track["title"],
             "options": options
@@ -86,7 +84,6 @@ async def search_song(body: Tracks, req: Request):
     try:
         token = req.state.access_token
         print(token)
-        mp3_buffers = []
         for id in body.tracksId:
             track = search_track(token=token, track_id=id)
             buffer = BytesIO()
@@ -133,16 +130,8 @@ async def search_song(body: Tracks, req: Request):
 
             audio_mp3.save(mp3_buffer, v2_version=3)
             mp3_buffer.seek(0)
-            mp3_buffers.append(mp3_buffer)
 
-        rar_buffer = BytesIO()
-        with rarfile.RAR(rar_buffer, mode='w') as rar:
-            for i, mp3_buffer in enumerate(mp3_buffers):
-                filename = f"{i+1}.mp3"  # Customize filename format (optional)
-                rar.add(filename, mp3_buffer)
-        rar_buffer.seek(0)
-        return StreamingResponse(rar_buffer, media_type="application/x-rar-compressed")
-        # return StreamingResponse(mp3_buffer, media_type="audio/mp3")
+            return StreamingResponse(mp3_buffer, media_type="audio/mp3")
 
     except Exception as error:
         print(error)
