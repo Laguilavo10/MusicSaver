@@ -1,8 +1,7 @@
-import { Component, Input, effect, computed, inject } from '@angular/core'
+import { Component, computed, input } from '@angular/core'
 import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm'
 import { BrnSeparatorComponent } from '@spartan-ng/ui-separator-brain'
 import { Track } from '@/app/types/app'
-import { TracksStore } from '@/app/store/tracks.store'
 
 @Component({
   selector: 'track-item-menu',
@@ -13,7 +12,7 @@ import { TracksStore } from '@/app/store/tracks.store'
       <brn-separator hlmSeparator />
       <article class="flex w-full gap-3">
         <img
-          [src]="track.cover"
+          [src]="track().cover"
           [alt]="'Cover de la canción ' + track.name"
           class="size-20 aspect-square rounded-md"
         />
@@ -22,16 +21,18 @@ import { TracksStore } from '@/app/store/tracks.store'
           <div class="w-full flex justify-between gap-4">
             <div class="flex flex-col">
               <h5 class="text-base  font-semibold ">
-                {{ track.name }}
+                {{ track().name }}
               </h5>
             </div>
           </div>
           <span class="text-sm font-semibold text-gray-500">{{
-            track.artist
+            track().artist
           }}</span>
-          <span class='text-xs text-end'>
+          <span class="text-xs text-end">
             From :
-            <a [href]="url()" target="_blank" class='underline text-blue-500'>Link a descargar</a>
+            <a [href]="url()" target="_blank" class="underline text-blue-500"
+              >Link a descargar</a
+            >
           </span>
         </div>
       </article>
@@ -39,15 +40,14 @@ import { TracksStore } from '@/app/store/tracks.store'
   `
 })
 export class TrackItemMenuComponent {
-  @Input({ required: true }) track: Track = {
+  track = input<Track>({
     id: '',
+    cover: '',
     name: '',
-    artist: '',
-    cover: ''
-  }
-  tracksStore = inject(TracksStore)
-  url = computed(() => {
-    const track = this.tracksStore.tracks().find((t) => t.id === this.track.id)
-    return `https://www.youtube.com/watch?v=${track?.options?.urls?.[0]}`
+    artist: ''
   })
+
+  url = computed(
+    () => `https://www.youtube.com/watch?v=${this.track()?.options?.urls?.[0]}`
+  )
 }
