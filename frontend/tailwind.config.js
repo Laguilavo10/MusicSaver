@@ -10,6 +10,11 @@ module.exports = {
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(275px, 1fr))'
       },
+      colors: {
+        primary: "#19181f",
+        "light-primary": "#23202a",
+        "light-text": "#c2c6dd"
+      }
     },
   },
   plugins: [],
