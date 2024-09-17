@@ -18,7 +18,7 @@ import { HlmSheetOverlayDirective } from './hlm-sheet-overlay.directive';
 		},
 	],
 	template: `
-		<brn-sheet-overlay hlm  />
+		<brn-sheet-overlay hlm class="bg-light-primary/80"/>
 		<ng-content />
 	`,
 	encapsulation: ViewEncapsulation.None,

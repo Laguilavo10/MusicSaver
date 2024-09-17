@@ -61,7 +61,7 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm'
       </button>
       <hlm-sheet-content
         *brnSheetContent="let ctx"
-        class="flex flex-col justify-between max-h-screen h-screen"
+        class="flex flex-col justify-between max-h-screen h-screen bg-primary"
       >
         <hlm-sheet-header>
           <h3 hlmSheetTitle>To Download</h3>
