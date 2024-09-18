@@ -15,6 +15,7 @@ import {
 import { HlmIconComponent } from '@spartan-ng/ui-icon-helm'
 import { UtilsService } from '@/app/services/utils.service'
 import { TracksStore } from '@/app/store/tracks.store'
+import { ApiService } from '@/app/services/api.service'
 
 @Component({
   selector: 'track-card',
@@ -33,36 +34,36 @@ import { TracksStore } from '@/app/store/tracks.store'
   ],
   providers: [],
   template: `
-      <hlm-tooltip>
-        <article
-          hlmTooltipTrigger
-          [class]="cn('flex flex-col items-center shadow-xl hover:cursor-pointer h-full rounded-3xl', {
+    <hlm-tooltip>
+      <article
+        hlmTooltipTrigger
+        [class]="cn('flex flex-col items-center shadow-xl hover:cursor-pointer h-full rounded-3xl', {
           'border-green-500 border-4 shadow-green-300 shadow-lg' : isSelected(),
           'border-2 border-light-text ' : !isSelected(),
         })"
-          (click)="toggleSelected()"
-        >
-          <header hlmCardHeader>
-            <h2 hlmCardTitle class="text-center">{{ trackName }}</h2>
-          </header>
-          <div hlmCardContent class="flex flex-col gap-2">
-            <img
-              [src]="cover"
-              [alt]="'cover de la canción ' + trackName"
-              class="w-full rounded-lg pointer-events-none"
-            />
-            <p hlmCardDescription class="text-end text-light-text">
-              {{ artist }}
-            </p>
-          </div>
-        </article>
-        <span
-          *brnTooltipContent
-          class="flex justify-self-center text-xs border-green-500"
-        >
-          {{ isSelected() ? 'Added' : 'Add to download' }}
-        </span>
-      </hlm-tooltip>
+        (click)="toggleSelected()"
+      >
+        <header hlmCardHeader>
+          <h2 hlmCardTitle class="text-center">{{ trackName }}</h2>
+        </header>
+        <div hlmCardContent class="flex flex-col gap-2">
+          <img
+            [src]="cover"
+            [alt]="'cover de la canción ' + trackName"
+            class="w-full rounded-lg pointer-events-none"
+          />
+          <p hlmCardDescription class="text-end text-light-text">
+            {{ artist }}
+          </p>
+        </div>
+      </article>
+      <span
+        *brnTooltipContent
+        class="flex justify-self-center text-xs border-green-500"
+      >
+        {{ isSelected() ? 'Added' : 'Add to download' }}
+      </span>
+    </hlm-tooltip>
   `
 })
 export class TrackCardComponent {
@@ -71,6 +72,7 @@ export class TrackCardComponent {
   @Input({ required: true }) cover: string = ''
   @Input({ required: true }) artist: string = ''
   tracksStore = inject(TracksStore)
+  apiService = inject(ApiService)
   cn = inject(UtilsService).cn
   isSelected = signal<boolean>(false)
 
