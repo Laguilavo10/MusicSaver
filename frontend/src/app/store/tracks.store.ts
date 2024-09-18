@@ -8,6 +8,7 @@ import {
 } from '@ngrx/signals'
 import type { Track } from '@/app/types/app'
 import { computed, inject } from '@angular/core'
+import { TrackDetail } from '../models/track-detail.model'
 
 type TracksState = {
   tracks: Track[]
@@ -25,13 +26,9 @@ export const TracksStore = signalStore(
   })),
   withMethods((store, apiService = inject(ApiService)) => ({
     addTrack: (track: Track) => {
-      const addOptionsToTrack = (data: any) => {
+      const addOptionsToTrack = (data: TrackDetail) => {
         patchState(store, (state) => {
-          track.options = { 
-            isErrored: false,
-            isLoading: false,
-            urls: data.options
-          }
+          track.videoId = data.videoId
           return { tracks: [...state.tracks, track] }
         })
       }

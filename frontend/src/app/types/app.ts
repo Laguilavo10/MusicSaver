@@ -8,5 +8,5 @@ export interface Track {
   name: string
   artist: string
   cover: string
-  options?: TrackOptions
+  videoId?: string
 }

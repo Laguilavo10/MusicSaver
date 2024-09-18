@@ -60,13 +60,11 @@ async def search_song(body: Track, req: Request):
         track = search_track(token=token, track_id=id)
         searchedSong = Search(
             f'cancion {track["title"]} - {track["artist"]}')
-        options = list(map(lambda track: track.video_id,
-                           searchedSong.results))[0:5]
-        json_str = json.dumps(options, indent=4, default=str)
+        videoId = searchedSong.results[0].video_id
         options  = {
             "id": id,
             "title": track["title"],
-            "options": options
+            "videoId": videoId
         }
         return Response(status_code=200, content=json.dumps(options), media_type="application/json")
 

@@ -48,6 +48,6 @@ export class TrackItemMenuComponent {
   })
 
   url = computed(
-    () => `https://www.youtube.com/watch?v=${this.track()?.options?.urls?.[0]}`
+    () => `https://www.youtube.com/watch?v=${this.track()?.videoId}`
   )
 }

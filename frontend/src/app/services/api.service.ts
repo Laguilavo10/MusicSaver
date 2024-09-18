@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs'
 import { inject, Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '@/environments/environment.development'
@@ -26,7 +27,7 @@ export class ApiService {
   }
 
   searchTrack(trackId: string) {
-    return this.http.post(
+    return this.http.post<TrackDetail>(
       `${this.baseUrl}/search/track`,
       { trackId },
       {
