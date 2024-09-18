@@ -1,3 +1,4 @@
+import { ApiService } from '@/app/services/api.service'
 import {
   patchState,
   signalStore,
@@ -6,7 +7,7 @@ import {
   withState
 } from '@ngrx/signals'
 import type { Track } from '@/app/types/app'
-import { computed } from '@angular/core'
+import { computed, inject } from '@angular/core'
 
 type TracksState = {
   tracks: Track[]
@@ -22,39 +23,21 @@ export const TracksStore = signalStore(
   withComputed(({ tracks }) => ({
     count: computed(() => tracks().length)
   })),
-  withMethods((store) => ({
+  withMethods((store, apiService = inject(ApiService)) => ({
     addTrack: (track: Track) => {
-      patchState(store, (state) => ({ tracks: [...state.tracks, track] }))
-
-      const addOptionsToTrack = (trackId: string, data: any) => {
+      const addOptionsToTrack = (data: any) => {
         patchState(store, (state) => {
-          const index = state.tracks.findIndex((track) => track.id === trackId)
-          if (index === -1) return state
-          const newState = [...state.tracks]
-          newState[index] = {
-            ...newState[index],
-            options: {
-              isErrored: false,
-              isLoading: false,
-              urls: data.options
-            }
+          track.options = { 
+            isErrored: false,
+            isLoading: false,
+            urls: data.options
           }
-          return { tracks: newState }
+          return { tracks: [...state.tracks, track] }
         })
       }
-
-      fetch('http://127.0.0.1:8000/search/track', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('access_token')}`
-        },
-        body: JSON.stringify({ trackId: track.id })
+      apiService.searchTrack(track.id).subscribe((data) => {
+        addOptionsToTrack(data)
       })
-        .then((res) => res.json())
-        .then((data) => {
-          addOptionsToTrack(track.id, data)
-        })
     },
     removeTrack: (trackId: Track['id']) =>
       patchState(store, (state) => ({
