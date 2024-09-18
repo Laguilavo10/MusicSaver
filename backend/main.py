@@ -31,7 +31,6 @@ origins = [
 
 @app.middleware("http")
 async def extract_code(req: Request, call_next):
-    print('hola')
     try:
         req.state.access_token = req.headers['authorization'].split()[1]
         response = await call_next(req)
@@ -53,7 +52,6 @@ class Track(BaseModel):
 
 @app.post("/search/track")
 async def search_song(body: Track, req: Request):
-    print('uwu')
     try:
         token = req.state.access_token
         id= body.trackId
@@ -81,7 +79,6 @@ class Tracks(BaseModel):
 async def search_song(body: Tracks, req: Request):
     try:
         token = req.state.access_token
-        print(token)
         for id in body.tracksId:
             track = search_track(token=token, track_id=id)
             buffer = BytesIO()

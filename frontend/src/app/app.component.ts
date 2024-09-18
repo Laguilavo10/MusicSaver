@@ -6,7 +6,6 @@ import { environment } from '@/environments/environment.development'
 import { HeaderComponent } from '@components/header/header.component'
 import { TracksComponent } from '@components/tracks/tracks.component'
 import { AuthService } from '@/app/services/auth.service'
-// import { TrackDetailComponent } from '@/app/pages/track-detail/track-detail.component'
 
 @Component({
   selector: 'app-root',
@@ -17,7 +16,6 @@ import { AuthService } from '@/app/services/auth.service'
     HeaderComponent,
     TracksComponent,
     MaxWidthWrapperComponent,
-    // TrackDetailComponent
   ],
   template: `
     <main class="flex flex-col gap-10">
