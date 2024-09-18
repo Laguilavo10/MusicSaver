@@ -20,19 +20,12 @@ import { TrackDetailComponent } from '@/app/pages/track-detail/track-detail.comp
     TrackDetailComponent
   ],
   template: `
-      <!-- <main class="min-h-screen flex flex-col gap-10 h-full"> -->
-      <main class="min-h-screen h-screen ">
-        <div class=' h-[inherit] bg-slate-500 '>
-          ss
-        </div>
-        <div>
-          sadas
-        </div>
-      </main>
-      <!-- <max-width-wrapper class='h-full'>
-      <app-header />
-      <router-outlet/> -->
-    <!-- </max-width-wrapper> -->
+    <main class="flex flex-col gap-10">
+      <max-width-wrapper>
+        <app-header />
+        <router-outlet class='hidden'/>
+      </max-width-wrapper>
+    </main>
   `
 })
 export class AppComponent implements OnInit {
