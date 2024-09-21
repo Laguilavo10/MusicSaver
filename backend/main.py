@@ -12,7 +12,7 @@ from pydantic import BaseModel
 # from starlette.middleware.authentication import AuthenticationMiddleware
 
 # pytube and mutagen
-from pytubefix import YouTube, Search, Stream
+from pytubefix import YouTube, Search
 from pydub import AudioSegment
 from mutagen.mp3 import MP3
 from mutagen.id3 import ID3, APIC, TIT2, TRCK, TCON, TALB, TPE1, TPE2, TYER
@@ -65,10 +65,9 @@ async def search_song(body: Track, req: Request):
             "videoId": videoId
         }
         return Response(status_code=200, content=json.dumps(options), media_type="application/json")
-
     except Exception as error:
-        print(error)
-        return Response(status_code=400, content=f"Error:{error}")
+        print('Ha habido un error : ', error)
+        return Response(status_code=500, content=f"Error:{error}")
 
 
 class Tracks(BaseModel):
