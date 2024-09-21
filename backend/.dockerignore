@@ -1,0 +1,11 @@
+# Carpetas de caché y compilación
+__pycache__/
+env/
+
+# Archivos de configuración de entorno local
+# .env
+
+# Archivos de registro y otros archivos temporales
+*.log
+.DS_Store
+Thumbs.db

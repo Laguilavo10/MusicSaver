@@ -1,0 +1,20 @@
+# Carpetas de configuración y caché de IDEs
+.angular/
+.vscode/
+.nx/
+
+# Archivos y carpetas de compilación y caché
+dist/
+tmp/
+.angular/cache
+.sass-cache/
+node_modules/
+
+# Archivos de configuración de entorno local
+*.env
+
+# Archivos de registro y otros archivos temporales
+npm-debug.log
+yarn-error.log
+.DS_Store
+Thumbs.db
