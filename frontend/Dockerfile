@@ -1,17 +1,20 @@
-# Usar una imagen base ligera
+# Use a lightweight base image
 FROM node:18.19.1-alpine
 
-# Establecer el directorio de trabajo
+# Set the working directory
 WORKDIR /app
 
-# Copiar solo los archivos de dependencias primero
+# Copy only the dependency files first
 COPY package.json package-lock.json ./
 
-# Instalar dependencias
+# Install dependencies
 RUN npm ci
 
-# Copiar el resto de los archivos del proyecto
+# Copy the rest of the project files
 COPY . .
 
-# Comando para iniciar la aplicación
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+# Expose port 4200
+EXPOSE 4200
+
+# Command to start the application
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--disable-host-check", "--poll", "2000"]

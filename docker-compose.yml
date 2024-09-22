@@ -1,10 +1,18 @@
-version: "3.7"
 services:
   frontend-ms:
     build: ./frontend
+    image: frontend-ms
+    container_name: frontend-ms
     ports:
       - 4200:4200
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
   backend-ms:
     build: ./backend
+    image: backend-ms
+    container_name: backend-ms
     ports:
       - 8000:8000
+    volumes:
+      - ./backend:/app
