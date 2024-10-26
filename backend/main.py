@@ -83,8 +83,9 @@ async def search_song(body: Tracks, req: Request):
             buffer = BytesIO()
             searchedSong = Search(
                 f'{track["title"]} - {track["artist"]} letra')
-            video_id = searchedSong.results[0].video_id
-            video = YouTube(f"https://www.youtube.com/watch?v={video_id}")
+            video_id = searchedSong.videos[0].video_id
+            # In pytubefix 8.0.0 the client parameter is required to avoid bot detection
+            video = YouTube(f"https://www.youtube.com/watch?v={video_id}",client='MWEB')
             videoStream = video.streams.get_audio_only()
             videoStream.stream_to_buffer(buffer)
             buffer.seek(0)
@@ -128,7 +129,7 @@ async def search_song(body: Tracks, req: Request):
             return StreamingResponse(mp3_buffer, media_type="audio/mp3")
 
     except Exception as error:
-        print(error)
+        print("error", error)
         return Response(status_code=400, content=f"Error:{error}")
 
 # #############
