@@ -39,6 +39,7 @@ export const TracksStore = signalStore(
     removeTrack: (trackId: Track['id']) =>
       patchState(store, (state) => ({
         tracks: state.tracks.filter((track) => track.id !== trackId)
-      }))
+      })),
+    cleanStore: () => patchState(store, () => initialState)
   }))
 )

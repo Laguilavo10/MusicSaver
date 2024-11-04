@@ -96,12 +96,14 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm'
   `
 })
 export class MenuComponent {
-  tracks = inject(TracksStore).tracks
+  store = inject(TracksStore)
+  tracks = this.store.tracks
   countTracks = inject(TracksStore).count
   isDownloading = signal(false)
   async downloadTracksFromMenu() {
     this.isDownloading.set(true)
     await downloadTracks(this.tracks())
     this.isDownloading.set(false)
+    this.store.cleanStore()
   }
 }
