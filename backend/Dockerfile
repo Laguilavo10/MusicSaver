@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y ffmpeg
 
 # Copiar el archivo de requerimientos y el archivo .env
 COPY requirements.txt ./
-COPY .env ./
+# COPY .env ./
 
 # Instalar las dependencias
 RUN pip install --no-cache-dir -r requirements.txt

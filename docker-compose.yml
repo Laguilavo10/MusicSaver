@@ -1,7 +1,7 @@
 services:
   frontend-ms:
     build: ./frontend
-    image: laguilavo10/frontend-music-saver:1.0.0
+    image: laguilavo10/frontend-music-saver:latest
     container_name: frontend-ms
     ports:
       - 4200:4200
@@ -10,7 +10,7 @@ services:
       - /app/node_modules
   backend-ms:
     build: ./backend
-    image: laguilavo10/backend-music-saver:1.0.0
+    image: laguilavo10/backend-music-saver:latest
     container_name: backend-ms
     ports:
       - 8000:8000
