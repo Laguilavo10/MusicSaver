@@ -1,0 +1,28 @@
+services:
+  - name: frontend-ms
+    type: web  # Puedes usar otro tipo si es necesario
+    env: docker
+    plan: free  # O usa otro plan si necesitas más recursos
+    dockerfilePath: ./frontend/Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 4200
+    routes:
+      - type: http
+        source: /
+        targetPort: 4200
+
+  - name: backend-ms
+    type: web
+    env: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8000
+    routes:
+      - type: http
+        source: /api
+        targetPort: 8000
