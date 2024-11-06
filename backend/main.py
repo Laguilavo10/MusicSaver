@@ -28,9 +28,14 @@ origins = [
 ]
 # app.add_middleware(AuthenticationMiddleware)
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
 
 @app.middleware("http")
 async def extract_code(req: Request, call_next):
+    if req.url.path == "/health":
+        return await call_next(req)
     try:
         req.state.access_token = req.headers['authorization'].split()[1]
         response = await call_next(req)
@@ -45,6 +50,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 class Track(BaseModel):
