@@ -2,7 +2,7 @@ import { MaxWidthWrapperComponent } from './components/max-width-wrapper/max-wid
 import { Component, inject, OnInit } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { SigninComponent } from '@components/signin/signin.component'
-import { environment } from '@/environments/environment.development'
+import { environment } from '@/environments/environment'
 import { HeaderComponent } from '@components/header/header.component'
 import { TracksComponent } from '@components/tracks/tracks.component'
 import { AuthService } from '@/app/services/auth.service'

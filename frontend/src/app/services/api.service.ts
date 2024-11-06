@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { environment } from '@/environments/environment.development'
+import { environment } from '@/environments/environment'
 import { TrackDetail } from '@/app/models/track-detail.model'
 
 @Injectable({

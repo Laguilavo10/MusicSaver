@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core'
 import { HlmButtonDirective } from '@components/ui/ui-button-helm/src'
 import { SpotifySvgComponent } from '@components/svgs/spotify-svg.component'
-import { environment } from '@/environments/environment.development'
+import { environment } from '@/environments/environment'
 import { AuthService } from '@/app/services/auth.service'
 
 @Component({
@@ -10,7 +10,7 @@ import { AuthService } from '@/app/services/auth.service'
   imports: [HlmButtonDirective, SpotifySvgComponent],
   template: `
     <button hlmBtn class="flex gap-2 items-center" (click)="handleAuth()">
-      <spotify-svg class='size-5' />
+      <spotify-svg class="size-5" />
       Sing in with Spotify
     </button>
   `
