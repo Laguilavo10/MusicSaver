@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 4200
 
 # Command to start the application
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--disable-host-check", "--poll", "2000"]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--disable-host-check", "--port", "4200"]
