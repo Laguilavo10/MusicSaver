@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
-    "build": "ng build",
+    "build": "npm run config && ng build",
+    "config": "ts-node src/environments/set-env.ts",
     "start": "http-server -p 4200 ./dist/prueba_angular/browser -o",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -34,6 +35,7 @@
     "@spartan-ng/ui-sheet-brain": "0.0.1-alpha.352",
     "@spartan-ng/ui-tooltip-brain": "0.0.1-alpha.352",
     "class-variance-authority": "^0.6.0",
+    "colors": "^1.4.0",
     "file-saver": "^2.0.5",
     "http-server": "^14.1.1",
     "lucide-angular": "^0.408.0",
