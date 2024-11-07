@@ -5,7 +5,7 @@
     "ng": "ng",
     "dev": "ng serve",
     "build": "npm run config && ng build",
-    "config": "ts-node src/environments/set-env.ts",
+    "config": "ts-node src/set-env.ts",
     "start": "http-server -p 4200 ./dist/prueba_angular/browser -o",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
