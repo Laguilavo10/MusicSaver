@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "dev": "npm run config && ng serve",
-    "build": "npm run clg-test && npm run config && ng build",
+    "dev": "ng serve",
+    "build": "npm run config && ng build",
     "config": "ts-node src/set-env.ts",
     "start": "npm run build && http-server -p 4200 ./dist/prueba_angular/browser",
     "clg-test": "echo Test",
