@@ -43,6 +43,7 @@ Thumbs.db
 
 #environment
 */environments/*
+.env
 
 #scripts
 *.sh

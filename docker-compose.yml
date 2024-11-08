@@ -3,6 +3,11 @@ services:
     build: ./frontend
     image: laguilavo10/frontend-music-saver:latest
     container_name: frontend-ms
+    environment:
+      - API=${API}
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - REDIRECT_URI=${REDIRECT_URI}
+      - SPOTIFY_API_URL=${SPOTIFY_API_URL}
     ports:
       - 4200:4200
     volumes:
