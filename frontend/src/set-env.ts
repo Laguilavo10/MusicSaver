@@ -2,10 +2,15 @@ const setEnv = () => {
   const fs = require('fs')
   const writeFile = fs.writeFile
   const targetPath = './src/environments/environment.ts'
-  const colors = require('colors')
-  require('dotenv').config({
-    path: '.env'
-  })
+  // const colors = require('colors')
+  console.log('hola1')
+  require('dotenv').config(
+    // {
+    // path: '.env'
+    // }
+  )
+  console.log('hola2')
+  console.log(process.env)
   const envConfigFile = `export const environment = {
   production: true,
   api: '${process.env['API']}',
@@ -15,9 +20,9 @@ const setEnv = () => {
 };
 `
   console.log(
-    colors.magenta(
+    // colors.magenta(
       'The file `environment.ts` will be written with the following content: \n'
-    )
+  //   )
   )
   writeFile(targetPath, envConfigFile, (err: unknown) => {
     if (err) {
@@ -25,9 +30,9 @@ const setEnv = () => {
       throw err
     } else {
       console.log(
-        colors.magenta(
+        // colors.magenta(
           `Angular environment.ts file generated correctly at ${targetPath} \n`
-        )
+        // )
       )
     }
   })
