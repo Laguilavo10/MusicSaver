@@ -1,21 +1,24 @@
-# Use a lightweight base image
+# Usar una imagen base ligera de Node
 FROM node:18.19.1-alpine
 
-# Set the working directory
+# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copy only the dependency files first
-COPY package.json package-lock.json ./
+# Instalar solo dependencias de producción
+ENV NODE_ENV=production
 
-# Install dependencies
-RUN npm ci
+# Copiar solo archivos de dependencias primero para optimizar el caché
+COPY package*.json ./
 
-# Copy the rest of the project files
+# Instalar dependencias
+RUN npm ci --only=production && \
+    npm cache clean --force
+
+# Copiar el resto de los archivos del proyecto
 COPY . .
 
-# Expose port 4200
+# Exponer el puerto 4200
 EXPOSE 4200
 
-# Command to start the application
+# Comando para iniciar la aplicación
 CMD ["npm", "run", "start"]
-# CMD ["npm", "run", "dev", "--", "-c", "production", "--host", "0.0.0.0", "--port", "4200"]

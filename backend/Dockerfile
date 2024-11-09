@@ -1,17 +1,18 @@
-# Usar una imagen base de Python
-FROM python:3.9-slim
+# Usar una imagen base más ligera para Python
+FROM python:3.9-slim-buster
 
-# Establecer el directorio de trabajo
+# Definir el directorio de trabajo
 WORKDIR /app
 
-# Instala FFmpeg
-RUN apt-get update && apt-get install -y ffmpeg
+# Instalar ffmpeg y limpiar la caché de apt para reducir tamaño de la imagen
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ffmpeg && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copiar el archivo de requerimientos y el archivo .env
-COPY requirements.txt ./
-# COPY .env ./
+# Copiar solo requirements para instalar dependencias primero (optimiza el caché de Docker)
+COPY requirements.txt .
 
-# Instalar las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar el resto de los archivos del proyecto
@@ -20,5 +21,5 @@ COPY . .
 # Exponer el puerto
 EXPOSE 8000
 
-# Comando para iniciar la aplicación
+# Comando por defecto
 CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
