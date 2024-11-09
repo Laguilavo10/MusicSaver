@@ -11,16 +11,12 @@ const setEnv = () => {
   spotifyApiUrl: '${process.env['SPOTIFY_API_URL']}',
 };
 `
-  console.log(process.env)
-  console.log(envConfigFile)
-  console.log(targetPath)
   console.log(
       'The file `environment.ts` will be written with the following content: \n'
   )
   writeFile(targetPath, envConfigFile, (err: unknown) => {
     if (err) {
-      console.log('ha habido un error')
-      console.error('error FFF: ', err)
+      console.error('error: ', err)
       throw err
     } else {
       console.log(
