@@ -1,5 +1,5 @@
 import { Track } from '@/app/types/app'
-import { saveAs } from 'file-saver'
+import * as FileSaver from 'file-saver';
 import { environment } from '@/environments/environment'
 
 export const downloadTracks = async (tracks: Track[]) => {
@@ -22,7 +22,7 @@ export const downloadTracks = async (tracks: Track[]) => {
       console.log(res)
 
       const blob = await res.blob()
-      saveAs(blob, `${name}.mp3`)
+      FileSaver.saveAs(blob, `${name}.mp3`)
     } catch (error) {
       console.log(error)
     }
