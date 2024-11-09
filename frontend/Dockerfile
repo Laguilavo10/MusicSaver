@@ -23,5 +23,5 @@ COPY . .
 EXPOSE 4200
 
 # Comando para iniciar la aplicación
-# CMD ["npm", "run", "start"]
-CMD ["npm", "run", "dev", "--", "--port", "4200", "-c", "production"]
+CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "dev", "--", "--port", "4200", "-c", "production"]
