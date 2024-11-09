@@ -5,7 +5,7 @@ FROM node:18.19.1-alpine
 WORKDIR /app
 
 # Instalar solo dependencias de producción
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
 # Instalar Angular CLI globalmente
 RUN npm install -g @angular/cli
@@ -14,7 +14,7 @@ RUN npm install -g @angular/cli
 COPY package*.json ./
 
 # Instalar dependencias
-RUN npm ci && npm cache clean --force
+RUN npm ci
 
 # Copiar el resto de los archivos del proyecto
 COPY . .
@@ -23,5 +23,5 @@ COPY . .
 EXPOSE 4200
 
 # Comando para iniciar la aplicación
-CMD ["npm", "run", "start"]
-# CMD ["npm", "run", "dev", "--", "--port", "4200", "-c", "production"]
+# CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev", "--", "--port", "4200", "-c", "production"]
