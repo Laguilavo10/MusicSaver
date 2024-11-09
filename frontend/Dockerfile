@@ -11,8 +11,7 @@ ENV NODE_ENV=production
 COPY package*.json ./
 
 # Instalar dependencias
-RUN npm ci --only=production && \
-    npm cache clean --force
+RUN npm ci && npm cache clean --force
 
 # Copiar el resto de los archivos del proyecto
 COPY . .
