@@ -2,10 +2,7 @@ const setEnv = () => {
   const fs = require('fs')
   const writeFile = fs.writeFile
   const targetPath = './src/environments/environment.ts'
-  console.log('hola')
   require('dotenv').config()
-  console.log('hola2')
-  console.log(process.env)
   const envConfigFile = `export const environment = {
   production: true,
   api: '${process.env['API']}',
@@ -22,7 +19,7 @@ const setEnv = () => {
   writeFile(targetPath, envConfigFile, (err: unknown) => {
     if (err) {
       console.log('ha habido un error')
-      console.error(err)
+      console.error('error FFF: ', err)
       throw err
     } else {
       console.log(
