@@ -7,11 +7,14 @@ WORKDIR /app
 # Instalar solo dependencias de producción
 ENV NODE_ENV=production
 
+# Instalar Angular CLI globalmente
+RUN npm install -g @angular/cli
+
 # Copiar solo archivos de dependencias primero para optimizar el caché
 COPY package*.json ./
 
 # Instalar dependencias
-RUN npm ci
+RUN npm ci && npm cache clean --force
 
 # Copiar el resto de los archivos del proyecto
 COPY . .
@@ -21,3 +24,4 @@ EXPOSE 4200
 
 # Comando para iniciar la aplicación
 CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "dev", "--", "--port", "4200", "-c", "production"]
