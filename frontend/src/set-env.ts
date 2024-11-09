@@ -1,7 +1,7 @@
 const setEnv = () => {
   const fs = require('fs')
   const writeFile = fs.writeFile
-  const targetPath = './src/environments/environment.ts'
+  const targetPath = 'src/environments/environment.ts'
   require('dotenv').config()
   const envConfigFile = `export const environment = {
   production: true,
@@ -11,6 +11,7 @@ const setEnv = () => {
   spotifyApiUrl: '${process.env['SPOTIFY_API_URL']}',
 };
 `
+  console.log(process.env)
   console.log(envConfigFile)
   console.log(targetPath)
   console.log(
