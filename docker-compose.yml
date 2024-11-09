@@ -13,11 +13,11 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-  backend-ms:
-    build: ./backend
-    image: laguilavo10/backend-music-saver:latest
-    container_name: backend-ms
-    ports:
-      - 8000:8000
-    volumes:
-      - ./backend:/app
+  # backend-ms:
+  #   build: ./backend
+  #   image: laguilavo10/backend-music-saver:latest
+  #   container_name: backend-ms
+  #   ports:
+  #     - 8000:8000
+  #   volumes:
+  #     - ./backend:/app
