@@ -17,6 +17,10 @@ import { AuthService } from '@/app/services/auth.service'
 })
 export class SigninComponent {
   auth = inject(AuthService)
+
+  ngOnInit() {
+    console.log(environment.redirectUri)
+  }
   handleAuth = async () => {
     await this.auth.getAuthToken({
       clientId: environment.spotifyClientId,
