@@ -45,3 +45,5 @@ Thumbs.db
 */environments/*
 .env
 !/src/environments/
+# No ignorar el archivo .gitkeep en la carpeta src/environments
+!/src/environments/.gitkeep
